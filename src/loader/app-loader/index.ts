@@ -3,7 +3,7 @@ import morgan from 'morgan';
 
 export const appLoader = async (app: express.Application, router: express.Router) => {
   try {
-    const port = process.env.PORT;
+    const port = process.env.PORT || 3000;
 
     app.use(morgan('dev'));
     app.use(express.json());
