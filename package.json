@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "nodemon index.ts",
     "start": "node build/index.js",
-    "build": "npm i typescript && tsc"
+    "build": "tsc"
   },
   "author": "",
   "license": "ISC",
