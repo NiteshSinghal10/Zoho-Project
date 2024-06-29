@@ -6,3 +6,4 @@ const controllers_1 = require("../controllers");
 const router = (0, express_1.Router)();
 exports.router = router;
 router.use('/timesheet', controllers_1.timesheetController);
+router.use('/nitesh', (req, res) => res.send('hello nitesh'));
