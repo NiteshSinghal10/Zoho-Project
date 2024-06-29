@@ -22,6 +22,9 @@ router.route('/')
         const baseUrl = process.env.ZOHO_LINK;
         const portalId = process.env.PORTAL_ID;
         const token = await (0, services_1.getToken)();
+        if(token && !token.token) {
+            throw new Error('No Token Found In Database');
+        }
         const projectsIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/`, 'GET', `Zoho-oauthtoken ${token.token}`);
         const projectId = (0, utils_1.findProjectId)(projectKey, projectsIds.projects);
         const taskIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/${projectId}/tasks/`, 'GET', `Zoho-oauthtoken ${token.token}`);
@@ -31,6 +34,9 @@ router.route('/')
     }
     catch (error) {
         const err = error;
+        if(err.message == "Cannot read properties of undefined (reading 'find')") {
+            return (0, utils_1.makeResponse)(res, 400, false, 'Project or Task Not Found');
+        }
         return (0, utils_1.makeResponse)(res, 400, false, err.message);
     }
 });

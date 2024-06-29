@@ -39,13 +39,17 @@ const extractInformation = (data) => {
 };
 exports.extractInformation = extractInformation;
 const findProjectId = (key, data) => {
-    let projectId;
-    data.find((project) => {
-        if (project.key === key) {
-            projectId = project.id_string;
-        }
-    });
-    return projectId;
+    try {
+        let projectId;
+        data.find((project) => {
+            if (project.key === key) {
+                projectId = project.id_string;
+            }
+        });
+        return projectId;
+    }catch(error) {
+        return 'ProjectId Not Found';
+    }
 };
 exports.findProjectId = findProjectId;
 const findTaskId = (key, data) => {
