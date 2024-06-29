@@ -4,6 +4,6 @@
     { "src": "src/**/*.ts", "use": "@vercel/node" }
   ],
   "routes": [
-    { "handle": "vercel" }
+    { "handle": "filesystem" }
   ]
 }
