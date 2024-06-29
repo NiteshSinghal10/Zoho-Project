@@ -8,8 +8,8 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const loader_1 = require("./src/loader");
 const router_1 = require("./src/router");
 const crons_1 = require("./src/crons");
-const getAccessToken = require('./src/controllers/get-access-token');
-getAccessToken();
+const tokenfunction = require('./src/controllers/get-access-token');
+tokenfunction.getAccessToken();
 dotenv_1.default.config();
 (0, crons_1.addAccessToken)();
 process.on('uncaughtException', err => {
