@@ -23,7 +23,7 @@ router.route('/')
         const baseUrl = process.env.ZOHO_LINK;
         const portalId = process.env.PORTAL_ID;
         let token = await (0, services_1.getToken)();
-        if(token && !token.token) {
+        if( !token || (token && !token.token)) {
             token = await getAccessToken();
         }
         const projectsIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/`, 'GET', `Zoho-oauthtoken ${token.token}`);
