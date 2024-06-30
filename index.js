@@ -7,11 +7,10 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const loader_1 = require("./src/loader");
 const router_1 = require("./src/router");
-const crons_1 = require("./src/crons");
-const tokenfunction = require('./src/controllers/get-access-token');
-tokenfunction.getAccessToken();
+
+
 dotenv_1.default.config();
-(0, crons_1.addAccessToken)();
+
 process.on('uncaughtException', err => {
     console.log(' UNCAUGHT EXCEPTION ');
     console.log('[Inside \'uncaughtException\' event] ' + err.stack || err.message);
