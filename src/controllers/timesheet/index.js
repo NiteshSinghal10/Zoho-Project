@@ -5,7 +5,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.timesheetController = void 0;
 const express_1 = require("express");
-const moment_1 = __importDefault(require("moment"));
+const moment_1 = __importDefault(require("moment-timezone"));
 const utils_1 = require("../../utils");
 const utils_2 = require("../../utils");
 const middlewares_1 = require("../../middlewares");
