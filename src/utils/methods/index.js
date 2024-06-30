@@ -30,8 +30,8 @@ const callOtherService = async (url, method = 'GET', token = '', params, body) =
 exports.callOtherService = callOtherService;
 const extractInformation = (data) => {
     const dataArray = data.split(',');
-    const projectId = dataArray[0].trim();
-    const taskId = dataArray[1].trim();
+    const projectId = dataArray[0].trim().toUpperCase();
+    const taskId = dataArray[1].trim().toUpperCase();
     const startTime = dataArray[2].trim();
     const endTime = dataArray[3].trim();
     const description = dataArray[4].trim();
@@ -42,7 +42,7 @@ const findProjectId = (key, data) => {
     try {
         let projectId;
         data.find((project) => {
-            if (project.key == new RegExp(`^${key}$`,i)) {
+            if (project.key === key) {
                 projectId = project.id_string;
             }
         });
@@ -55,7 +55,7 @@ exports.findProjectId = findProjectId;
 const findTaskId = (key, data) => {
     let taskId;
     data.find((task) => {
-        if (task.key == new RegExp(`^${key}$`,i)) {
+        if (task.key === key) {
             taskId = task.id_string;
         }
     });
