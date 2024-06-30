@@ -10,6 +10,7 @@ const getAccessToken = async () => {
     const clientSecret = process.env.CLIENT_SECRET;
     ;
     const response = await (0, utils_1.callOtherService)(`${url}/oauth/v2/token?refresh_token=${refreshToken}&client_id=${clienId}&client_secret=${clientSecret}&grant_type=refresh_token`, 'POST');
-    await (0, services_1.addToken)(response.access_token);
+    const data = await (0, services_1.addToken)(response.access_token);
+    return data;
 };
 exports.getAccessToken = getAccessToken;

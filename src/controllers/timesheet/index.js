@@ -10,6 +10,7 @@ const utils_1 = require("../../utils");
 const utils_2 = require("../../utils");
 const middlewares_1 = require("../../middlewares");
 const services_1 = require("../../services");
+const getAccessToken = require("../get-access-token")
 const router = (0, express_1.Router)();
 router.route('/')
     .post(middlewares_1.addTimesheetValidation, async (req, res) => {
@@ -21,9 +22,9 @@ router.route('/')
         const hours = (0, utils_2.timeDifference)(start, end);
         const baseUrl = process.env.ZOHO_LINK;
         const portalId = process.env.PORTAL_ID;
-        const token = await (0, services_1.getToken)();
+        let token = await (0, services_1.getToken)();
         if(token && !token.token) {
-            throw new Error('No Token Found In Database');
+            token = await getAccessToken();
         }
         const projectsIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/`, 'GET', `Zoho-oauthtoken ${token.token}`);
         const projectId = (0, utils_1.findProjectId)(projectKey, projectsIds.projects);

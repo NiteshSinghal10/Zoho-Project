@@ -42,7 +42,7 @@ const findProjectId = (key, data) => {
     try {
         let projectId;
         data.find((project) => {
-            if (project.key === key) {
+            if (project.key == key) {
                 projectId = project.id_string;
             }
         });
@@ -55,7 +55,7 @@ exports.findProjectId = findProjectId;
 const findTaskId = (key, data) => {
     let taskId;
     data.find((task) => {
-        if (task.key === key) {
+        if (task.key == key) {
             taskId = task.id_string;
         }
     });
