@@ -16,7 +16,7 @@ router.route('/')
     .post(middlewares_1.addTimesheetValidation, async (req, res) => {
     try {
         const [projectKey, taskKey, startTime, endTime, description] = (0, utils_2.extractInformation)(req.body.data);
-        const date = (0, moment_1.default)().tz('Asia/Kolkata').format('MM-DD-YYYY');
+        const date = (0, moment_1.default)().format('MM-DD-YYYY');
         const start = (0, moment_1.default)(startTime, ['hA', 'h:mma']).format('hh:mm A');
         const end = (0, moment_1.default)(endTime, ['hA', 'h:mma']).format('hh:mm A');
         const hours = (0, utils_2.timeDifference)(start, end);
