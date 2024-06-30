@@ -31,6 +31,7 @@ router.route('/')
         const taskIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/${projectId}/tasks/`, 'GET', `Zoho-oauthtoken ${token.token}`);
         const taskId = (0, utils_1.findTaskId)(taskKey, taskIds.tasks);
         const response = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/${projectId}/tasks/${taskId}/logs/?bill_status=Billable&date=${date}&hours=${hours}&start_time=${start}&end_time=${end}&notes=${description}`, 'POST', `Zoho-oauthtoken ${token.token}`);
+        console.log(`${baseUrl}/restapi/portal/${portalId}/projects/${projectId}/tasks/${taskId}/logs/?bill_status=Billable&date=${date}&hours=${hours}&start_time=${start}&end_time=${end}&notes=${description}`, 'POST', `Zoho-oauthtoken ${token.token}`)
         return (0, utils_1.makeResponse)(res, 200, true, utils_1.RESPONSE_MESSAGES.timesheet_add, response);
     }
     catch (error) {
