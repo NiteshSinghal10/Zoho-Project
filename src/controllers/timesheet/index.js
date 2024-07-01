@@ -22,10 +22,7 @@ router.route('/')
         const hours = (0, utils_2.timeDifference)(start, end);
         const baseUrl = process.env.ZOHO_LINK;
         const portalId = process.env.PORTAL_ID;
-        let token = await (0, services_1.getToken)();
-        if( !token || (token && !token.token)) {
-            token = await tokenFunction.getAccessToken();
-        }
+        let token = await tokenFunction.getAccessToken();
         const projectsIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/`, 'GET', `Zoho-oauthtoken ${token.token}`);
         const projectId = (0, utils_1.findProjectId)(projectKey, projectsIds.projects);
         const taskIds = await (0, utils_2.callOtherService)(`${baseUrl}/restapi/portal/${portalId}/projects/${projectId}/tasks/`, 'GET', `Zoho-oauthtoken ${token.token}`);
